@@ -1,5 +1,7 @@
 package com.visa.project.domain;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -14,6 +16,10 @@ public class Test {
 	String titleOfTest;
 	String description;
 	String testLink;
+	@OneToMany(mappedBy="Test")
+	List<Question> questions;
+	@OneToMany(mappedBy="Test")
+	List<SubmissionId> submissionId;
 	
 	public Test(){
 		
@@ -37,7 +43,7 @@ public class Test {
 		return testCreator;
 	}
 
-	public void settestCreator(TestCreator testCreator) {
+	public void setTestCreator(TestCreator testCreator) {
 		this.testCreator = testCreator;
 	}
 
@@ -56,6 +62,32 @@ public class Test {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+	public String getTestLink() {
+		return testLink;
+	}
+
+	public void setTestLink(String testLink) {
+		this.testLink = testLink;
+	}
+
+	public List<Question> getQuestions() {
+		return questions;
+	}
+
+	public void setQuestions(List<Question> questions) {
+		this.questions = questions;
+	}
+
+	public List<SubmissionId> getSubmissionId() {
+		return submissionId;
+	}
+
+	public void setSubmissionId(List<SubmissionId> submissionId) {
+		this.submissionId = submissionId;
+	}
+	
+	
 	
 	
 

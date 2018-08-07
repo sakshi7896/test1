@@ -14,6 +14,7 @@ public class Option {
 	String optionText;
 	int flagForCorrectOption;
 	
+	
 	public Option(){
 		
 	}
@@ -26,6 +27,10 @@ public class Option {
 	
 	public int getOptionId(){
 		return optionId;
+	}
+	
+	public void setOptionId(int optionId){
+		this.optionId = optionId;
 	}
 
 	public Question getQuestion() {

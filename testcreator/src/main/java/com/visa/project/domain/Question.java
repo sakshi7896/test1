@@ -1,5 +1,7 @@
 package com.visa.project.domain;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -14,6 +16,10 @@ public class Question {
 	String questionText;
 	int questionMarks;
 	int flagForMultipleChoice;
+	@OneToMany(mappedBy="Question")
+	List<Option> options;
+	@OneToMany(mappedBy="Question")
+	List<SubmissionId> submissionId;
 	
 	public Question(){
 		
@@ -28,6 +34,10 @@ public class Question {
 	
 	public int getQuestionId(){
 		return questionId;
+	}
+	
+	public void setQuestionId(int questionId){
+		this.questionId = questionId;
 	}
 
 	public Test getTest() {
@@ -60,6 +70,22 @@ public class Question {
 
 	public void setFlagForMultipleChoice(int flagForMultipleChoice) {
 		this.flagForMultipleChoice = flagForMultipleChoice;
+	}
+
+	public List<Option> getOptions() {
+		return options;
+	}
+
+	public void setOptions(List<Option> options) {
+		this.options = options;
+	}
+
+	public List<SubmissionId> getSubmissionId() {
+		return submissionId;
+	}
+
+	public void setSubmissionId(List<SubmissionId> submissionId) {
+		this.submissionId = submissionId;
 	}
 	
 	

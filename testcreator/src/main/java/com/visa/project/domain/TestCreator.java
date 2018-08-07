@@ -1,7 +1,10 @@
 package com.visa.project.domain;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class TestCreator {
@@ -10,6 +13,8 @@ public class TestCreator {
 	String creatorEmailId;
 	String name;
 	String password;
+	@OneToMany(mappedBy="TestCreator")
+	List<Test> tests;
 	
 	public TestCreator(){
 		
@@ -37,6 +42,24 @@ public class TestCreator {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public List<Test> getTests() {
+		return tests;
+	}
+
+	public void setTests(List<Test> tests) {
+		this.tests = tests;
+	}
+	
+	
 	
 
 }
