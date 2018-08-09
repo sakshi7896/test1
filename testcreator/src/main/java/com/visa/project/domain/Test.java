@@ -3,6 +3,7 @@ package com.visa.project.domain;
 import java.util.List;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Test {
@@ -11,15 +12,17 @@ public class Test {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	int testId;
 	@ManyToOne(cascade=(CascadeType.PERSIST),fetch=FetchType.LAZY)
-	@JoinColumn(name="creatorEmailId")
+	@JoinColumn(name="creatorEmailId",nullable=false)
 	TestCreator testCreator;
+	@NotNull
 	String titleOfTest;
 	String description;
+	@NotNull
 	String testLink;
-	@OneToMany(mappedBy="Test")
+	@OneToMany(mappedBy="test")
 	List<Question> questions;
-	@OneToMany(mappedBy="Test")
-	List<SubmissionId>submissionId;
+	@OneToMany(mappedBy="test")
+	List<Submission> submission;
 	
 	public Test(){
 		
@@ -79,11 +82,11 @@ public class Test {
 		this.questions = questions;
 	}
 
-	public List<SubmissionId> getSubmissionId() {
-		return submissionId;
+	public List<Submission> getSubmission() {
+		return submission;
 	}
 
-	public void setSubmissionId(List<SubmissionId> submissionId) {
-		this.submissionId = submissionId;
+	public void setSubmission(List<Submission> submission) {
+		this.submission = submission;
 	}
 }
