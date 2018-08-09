@@ -19,7 +19,7 @@ public class Test {
 	@OneToMany(mappedBy="Test")
 	List<Question> questions;
 	@OneToMany(mappedBy="Test")
-	List<SubmissionId> submissionId;
+	List<SubmissionId>submissionId;
 	
 	public Test(){
 		
@@ -86,9 +86,4 @@ public class Test {
 	public void setSubmissionId(List<SubmissionId> submissionId) {
 		this.submissionId = submissionId;
 	}
-	
-	
-	
-	
-
 }

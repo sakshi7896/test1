@@ -97,9 +97,5 @@ public class Candidate {
 	public void setMarks(int marks) {
 		this.marks = marks;
 	}
-	
-	
-	
-	
 
 }
