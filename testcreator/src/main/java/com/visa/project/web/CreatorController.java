@@ -21,12 +21,12 @@ public class CreatorController {
 		if(tc!=null)
 		{
 			if(tc.getPassword().equals(password))
-				return "loginsuccess";
+				return "createtest";
 			else
-				return "loginfailed";
+				return "index";
 		}
 		else
-			return "loginfailed";
+			return "index";
 	}
 	
 	@RequestMapping(value="/creatorsignup",method=RequestMethod.POST)
@@ -34,7 +34,7 @@ public class CreatorController {
 		TestCreator tc = new TestCreator(emailId,name,password);
 		TestCreator aux = service.addNew(tc);
 		if(aux!=null)
-			return "registrationsuccess";
+			return "index";
 		else
 			return "registrationfailed";
 	}
