@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Candidate {
@@ -18,15 +19,18 @@ public class Candidate {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	int candidateId;
+	@NotNull
 	String candidateEmailId;
+	@NotNull
 	String candidateName;
 	String organization;
+	@NotNull
 	long mobileNumber;
 	@ManyToOne(cascade=(CascadeType.PERSIST),fetch=FetchType.LAZY)
-	@JoinColumn(name="testId")
+	@JoinColumn(name="testId",nullable=false)
 	Test test;
-	@OneToMany(mappedBy="Test")
-	List<SubmissionId> submissionId;
+	@OneToMany(mappedBy="candidate")
+	List<Submission> submission;
 	int marks;
 	
 	public Candidate(){
@@ -97,5 +101,15 @@ public class Candidate {
 	public void setMarks(int marks) {
 		this.marks = marks;
 	}
+
+	public List<Submission> getSubmission() {
+		return submission;
+	}
+
+	public void setSubmission(List<Submission> submission) {
+		this.submission = submission;
+	}
+	
+	
 
 }

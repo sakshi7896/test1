@@ -18,7 +18,9 @@ public class CreatorService {
 		return dao.findOne(emailId);
 	}
 	
-	public 
+	public TestCreator addNew(TestCreator tc){
+		return dao.addNew(tc);
+	}
 	
 	
 	

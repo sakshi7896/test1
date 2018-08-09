@@ -5,15 +5,22 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
+@Table(name="TestCreator")
 public class TestCreator {
 
+	
 	@Id
+	@NotNull
 	String creatorEmailId;
+	@NotNull
 	String name;
+	@NotNull
 	String password;
-	@OneToMany(mappedBy="TestCreator")
+	@OneToMany(mappedBy="testCreator")
 	List<Test> tests;
 	
 	public TestCreator(){

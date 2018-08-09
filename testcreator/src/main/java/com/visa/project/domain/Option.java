@@ -1,6 +1,9 @@
 package com.visa.project.domain;
 
+import java.util.List;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Option {
@@ -9,10 +12,14 @@ public class Option {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	int optionId;
 	@ManyToOne(cascade=(CascadeType.PERSIST),fetch=FetchType.LAZY)
-	@JoinColumn(name="questionId")
+	@JoinColumn(name="questionId",nullable=false)
 	Question question;
+	@NotNull
 	String optionText;
+	@NotNull
 	int flagForCorrectOption;
+	@OneToMany(mappedBy="option")
+	List<Submission> submission;
 	
 	
 	public Option(){
@@ -56,6 +63,15 @@ public class Option {
 	public void setFlagForCorrectOption(int flagForCorrectOption) {
 		this.flagForCorrectOption = flagForCorrectOption;
 	}
+
+	public List<Submission> getSubmission() {
+		return submission;
+	}
+
+	public void setSubmission(List<Submission> submission) {
+		this.submission = submission;
+	}
+	
 	
 	
 	
