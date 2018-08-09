@@ -35,9 +35,11 @@ public class QuestionDAO {
 		
 	}
 	
-	public Test addNewTest(Test t, String questionText, int questionMarks,int flagForMultipleChoice)
+	public Test addNewTest(Test t, String titleOfTest, String description, String testLink)
 	{
-		t.setTitleOfTest(questionText);
+		t.setTitleOfTest(titleOfTest);
+		t.setDescription(description);
+		t.setTestLink(testLink);
 		return t;
 		
 	}
