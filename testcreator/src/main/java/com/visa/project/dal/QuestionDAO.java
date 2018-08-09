@@ -37,9 +37,7 @@ public class QuestionDAO {
 	
 	public Test addNewTest(Test t, String titleOfTest, String description, String testLink)
 	{
-		t.setTitleOfTest(titleOfTest);
-		t.setDescription(description);
-		t.setTestLink(testLink);
+		em.persist(t);
 		return t;
 		
 	}
