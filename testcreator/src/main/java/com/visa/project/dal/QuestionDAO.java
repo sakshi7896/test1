@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.visa.project.domain.Question;
 import com.visa.project.domain.Option;
 import com.visa.project.domain.Test;
+import com.visa.project.domain.TestCreator;
 @Component
 @Transactional
 public class QuestionDAO {
@@ -35,8 +36,10 @@ public class QuestionDAO {
 		
 	}
 	
-	public Test addNewTest(Test t, String titleOfTest, String description, String testLink)
+	public Test addNewTest(Test t, String titleOfTest, String description, String testLink , String creatorId)
 	{
+		TestCreator tc = em.find(TestCreator.class, creatorId) ; 
+		t.setTestCreator(tc);
 		em.persist(t);
 		return t;
 		
