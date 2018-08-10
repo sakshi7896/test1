@@ -1,5 +1,8 @@
 package com.visa.project.web;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,17 +19,24 @@ public class CreatorController {
 	CreatorService service;
 	
 	@RequestMapping(value="/creatorlogin",method = RequestMethod.POST)
-	public String login(@RequestParam("creatorEmail")String emailId,@RequestParam("creatorPassword")String password){
+	public String login(HttpServletRequest req, @RequestParam("creatorEmail")String emailId,@RequestParam("creatorPassword")String password){
 		TestCreator tc = service.findOne(emailId);
 		if(tc!=null)
 		{
 			if(tc.getPassword().equals(password))
-				return "loginsuccess";
+				
+				{
+				String x= tc.getCreatorEmailId();
+				req.getSession().setAttribute("creatoremailid", x);
+				
+				return "createtest";
+				
+				}
 			else
-				return "loginfailed";
+				return "index";
 		}
 		else
-			return "loginfailed";
+			return "index";
 	}
 	
 	@RequestMapping(value="/creatorsignup",method=RequestMethod.POST)
@@ -34,7 +44,7 @@ public class CreatorController {
 		TestCreator tc = new TestCreator(emailId,name,password);
 		TestCreator aux = service.addNew(tc);
 		if(aux!=null)
-			return "registrationsuccess";
+			return "index";
 		else
 			return "registrationfailed";
 	}
