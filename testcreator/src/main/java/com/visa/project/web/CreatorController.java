@@ -1,14 +1,20 @@
 package com.visa.project.web;
 
+
 import javax.servlet.http.HttpServletRequest;
 
-import org.hibernate.Session;
+
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.visa.project.domain.TestCreator;
 import com.visa.project.service.CreatorService;
@@ -23,14 +29,13 @@ public class CreatorController {
 		TestCreator tc = service.findOne(emailId);
 		if(tc!=null)
 		{
-			if(tc.getPassword().equals(password))
-				
-				{
-				String x= tc.getCreatorEmailId();
-				req.getSession().setAttribute("creatoremailid", x);
-				
-				return "createtest";
-				
+			if(tc.getPassword().equals(password)){
+
+				ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+				HttpSession session = attr.getRequest().getSession() ; 
+				session.setAttribute("loggedin", tc);
+					return "createtest";
+
 				}
 			else
 				return "index";
